@@ -1,5 +1,16 @@
 # Getting Started with Create React App
 
+## Simple Helloworld app (Using React, Redux, Docker)
+
+## ASSIGNMENT
+CREATE A HELLOWORLD WEB APPS IN REACTJS THAT, AT LEAST, HAS THE FOLLOWING:
+1. A menu that can navigate two pages, a todo list and a weather forecast page
+2. A todo list that can add, edit, remove and complete any items
+3. A page displaying real time weather forecast in coming 7 days, information can retrieve from any
+opensource weather api, e.g. OpenWeather. User can input a city/location and the weather forecast
+will fetch and update accordingly
+4. Dockerize your deliverable into container for deployment
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
