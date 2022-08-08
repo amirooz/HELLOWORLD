@@ -1,9 +1,9 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-import AppContent from '../components/AppContent';
-import AppHeader from '../components/AppHeader';
-import PageTitle from '../components/PageTitle';
-import styles from '../styles/modules/app.module.scss';
+import AppContent from '../todo/components/AppContent';
+import AppHeader from '../todo/components/AppHeader';
+import PageTitle from '../todo/components/PageTitle';
+import styles from '../todo/styles/modules/app.module.scss';
 
 function Todo() {
   return (

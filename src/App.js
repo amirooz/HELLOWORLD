@@ -1,4 +1,4 @@
-import Navbar from "./Navbar"
+import Navbar from "./pages/Navbar"
 import Home from "./pages/Home"
 import Todo from "./pages/Todo"
 import Weather from "./pages/Weather"

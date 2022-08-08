@@ -1,65 +1,63 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import "../App.css";
+import TopButtons from "../weather/components/TopButtons";
+import Inputs from "../weather/components/Inputs";
+import TimeAndLocation from "../weather/components/TimeAndLocation";
+import TemperatureAndDetails from "../weather/components/TemperatureAndDetails";
+import Forecast from "../weather/components/Forecast";
+import getFormattedWeatherData from "../weather/services/weatherService";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Weather() {
-  const [data, setData] = useState({})
-  const [location, setLocation] = useState('')
+  const [query, setQuery] = useState({ q: "berlin" });
+  const [units, setUnits] = useState("metric");
+  const [weather, setWeather] = useState(null);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const message = query.q ? query.q : "current location.";
 
-  const searchLocation = (event) => {
-    if (event.key === 'Enter') {
-      axios.get(url).then((response) => {
-        setData(response.data)
-        console.log(response.data)
-      })
-      setLocation('')
-    }
-  }
+      toast.info("Fetching weather for " + message);
+
+      await getFormattedWeatherData({ ...query, units }).then((data) => {
+        toast.success(
+          `Successfully fetched weather for ${data.name}, ${data.country}.`
+        );
+
+        setWeather(data);
+      });
+    };
+
+    fetchWeather();
+  }, [query, units]);
+
+  const formatBackground = () => {
+    if (!weather) return "from-cyan-700 to-blue-700";
+    const threshold = units === "metric" ? 20 : 60;
+    if (weather.temp <= threshold) return "from-cyan-700 to-blue-700";
+
+    return "from-yellow-700 to-orange-700";
+  };
 
   return (
-    <div className="app">
-      <div className="search">
-        <input
-          value={location}
-          onChange={event => setLocation(event.target.value)}
-          onKeyPress={searchLocation}
-          placeholder='Enter Location'
-          type="text" />
-      </div>
-      <div className="container">
-        <div className="top">
-          <div className="location">
-            <p>{data.name}</p>
-          </div>
-          <div className="temp">
-            {data.main ? <h1>{data.main.temp.toFixed()}°F</h1> : null}
-          </div>
-          <div className="description">
-            {data.weather ? <p>{data.weather[0].main}</p> : null}
-          </div>
+    <div
+      className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
+    >
+      <TopButtons setQuery={setQuery} />
+      <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
+
+      {weather && (
+        <div>
+          <TimeAndLocation weather={weather} />
+          <TemperatureAndDetails weather={weather} />
+
+          <Forecast title="hourly forecast" items={weather.hourly} />
+          <Forecast title="daily forecast" items={weather.daily} />
         </div>
+      )}
 
-        {data.name !== undefined &&
-          <div className="bottom">
-            <div className="feels">
-              {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}°F</p> : null}
-              <p>Feels Like</p>
-            </div>
-            <div className="humidity">
-              {data.main ? <p className='bold'>{data.main.humidity}%</p> : null}
-              <p>Humidity</p>
-            </div>
-            <div className="wind">
-              {data.wind ? <p className='bold'>{data.wind.speed.toFixed()} MPH</p> : null}
-              <p>Wind Speed</p>
-            </div>
-          </div>
-        }
-
-
-
-      </div>
+      <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
     </div>
   );
 }
