@@ -39,6 +39,41 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Installation and use
+
+```
+$ git clone https://github.com/amirooz/helloworld.git
+```
+```
+$ cd checkers-ai-react
+```
+### Unix / Linux
+```
+$ yarn install
+```
+```
+$ yarn start
+```
+### Windows
+```
+$ npm install
+```
+```
+$ npm start
+```
+Runs the app in the development mode.<br>
+**  http://localhost:3000 **
+
+## Screenshots
+<img src="public/screenshots/todo-1.png" alt="">
+<img src="public/screenshots/todo-2.png" alt="">
+<img src="public/screenshots/todo-3.png" alt="">
+<img src="public/screenshots/weather.png" alt="">
+
+## License
+Helloworld simple weather & Todo app is permissive software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Frameworks and libraries has it own licensed
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
