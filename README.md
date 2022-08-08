@@ -54,7 +54,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 $ git clone https://github.com/amirooz/helloworld.git
 ```
 ```
-$ cd checkers-ai-react
+$ cd helloworld
 ```
 ### Unix / Linux
 ```
