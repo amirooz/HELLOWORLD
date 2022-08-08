@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-## Simple Helloworld app (Using React, Redux, Docker)
+# Simple Helloworld app (Using React, Redux, Docker)
 
 ## ASSIGNMENT
 CREATE A HELLOWORLD WEB APPS IN REACTJS THAT, AT LEAST, HAS THE FOLLOWING:
